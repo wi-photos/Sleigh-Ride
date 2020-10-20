@@ -2,6 +2,7 @@ from panda3d.core import loadPrcFileData
 
 loadPrcFileData("", "sync-video true")
 loadPrcFileData("", "show-frame-rate-meter false")
+loadPrcFileData("", "window-title Sleigh Ride")
 
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenText import OnscreenText
@@ -24,11 +25,11 @@ class MyApp(ShowBase):
         render.clearLight()
         aspect2d.getChildren().detach()
         self.mainFrame = DirectFrame(frameColor=(0, 0, 0, 1), frameSize=(-2, 2, -2, 2), pos=(0, 0, 0))
-        self.background = OnscreenImage(image = "images/bg.jpg", pos = (0, 0, 0), scale = (2, 1, 1))
+        self.background = OnscreenImage(image = "images/bg.jpg", pos = (0, 0, 0), scale = (1.5, 1, 1))
         self.background.setTransparency(TransparencyAttrib.MAlpha)
         self.background.reparentTo(self.mainFrame)
         self.title = OnscreenText(text="Sleigh Ride",pos=(0,0.8), scale=0.2,fg=(1, 1, 1, 1))
-        self.startButton = DirectButton(text = "Start", scale=.3, command=self.initiate, pos=(0, 0, -0.8))
+        self.startButton = DirectButton(text = "Play!", scale=.3, command=self.initiate, pos=(0, 0, -0.8))
         self.creditsButton = DirectButton(text = "Credits", scale=.1, command=self.initiatecredits, pos=(-1, 0, 0.8))
         self.gameInstructions1 = DirectLabel(text="It is Christmas Eve and presents ", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.5))
         self.gameInstructions1.reparentTo(aspect2d)
@@ -38,10 +39,10 @@ class MyApp(ShowBase):
         self.gameInstructions3.reparentTo(aspect2d)
         self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.1))
         self.gameInstructions4.reparentTo(aspect2d)
-        #self.gameInstructions5 = DirectLabel(text="Q - Switch weapons", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.4))
-        #self.gameInstructions5.reparentTo(aspect2d)
-       # self.gameInstructions6 = DirectLabel(text="Escape - Exit", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.6))
-        #self.gameInstructions6.reparentTo(aspect2d)
+        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0))
+        self.gameInstructions5.reparentTo(aspect2d)
+        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.1))
+        self.gameInstructions6.reparentTo(aspect2d)
         self.mySound = loader.loadSfx("music/happy-loop.ogg")
         self.mySound.setLoop(True)
         self.mySound.setLoopCount(0)
