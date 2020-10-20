@@ -1,0 +1,21 @@
+"Sleigh Ride" is developed by wi-photos © 2020.  
+
+Textures
+
+Verts https://wordpress.vertices.at
+
+“Seamless snow texture” by erxer1 licensed CC-BY 3.0: https://opengameart.org/content/seamless-snow-texture. The original work has been modified.
+
+“Fabric - Velvet - Red - Seamless Texture With Normalmap” by Keith333 licensed CC-BY 3.0: https://opengameart.org/content/fabric-velvet-red-seamless-texture-with-normalmap. The original work has been modified.
+
+“Fabric - Raised Gold - Seamless Texture With Normalmap” by Keith333 licensed CC-BY 3.0: https://opengameart.org/content/fabric-raised-gold-seamless-texture-with-normalmap. The original work has been modified.
+
+3D Artwork
+
+“Medieval Houses” by James Novak licensed CC-BY 3.0: https://opengameart.org/content/medieval-houses. The original work has been modified.
+
+“Low-poly Igloo” by Joey 'tidbit' licensed CC-BY-SA 3.0: https://opengameart.org/content/low-poly-igloo. The original work has been modified.
+
+UI elements by Kenny.nl
+
+This game was made with Panda3D. Please visit panda3d.org for more information
