@@ -1,5 +1,5 @@
 from panda3d.core import loadPrcFileData
-loadPrcFileData('', 'win-size 800 600')
+loadPrcFileData("", "win-size 800 600")
 loadPrcFileData("", "window-title Sleigh Ride!")
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenText import OnscreenText
@@ -18,6 +18,7 @@ class MyApp(ShowBase):
         render.getChildren().detach()
         render.clearLight()
         aspect2d.getChildren().detach()
+        base.setBackgroundColor(0, 0, 0)
         self.mainFrame = DirectFrame(frameColor=(0, 0, 0, 1), frameSize=(-2, 2, -2, 2), pos=(0, 0, 0))
         self.background = OnscreenImage(image = "images/bg.jpg", pos = (0, 0, 0), scale = (1.5, 1, 1))
         self.background.setTransparency(TransparencyAttrib.MAlpha)
@@ -25,19 +26,19 @@ class MyApp(ShowBase):
         self.title = OnscreenText(text="Sleigh Ride!",pos=(0,0.8), scale=0.2,fg=(1, 1, 1, 1))
         self.startButton = DirectButton(image = "images/play.png", scale=(0.5,0.5,0.15), relief = None, command=self.initiate, pos=(0, 0, -0.8))
         self.startButton.setTransparency(TransparencyAttrib.MAlpha)
-        self.creditsButton = DirectButton(image = "images/credits.png", scale=(0.3,0.3,0.08),relief = None,  command=self.initiatecredits, pos=(-1, 0, 0.6))
+        self.creditsButton = DirectButton(image = "images/credits.png", scale=(0.3,0.3,0.08),relief = None,  command=self.initiatecredits, pos=(-1, 0, 0.85))
         self.creditsButton.setTransparency(TransparencyAttrib.MAlpha)
-        self.gameInstructions1 = DirectLabel(text="It is Christmas Eve and presents ", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.4))
+        self.gameInstructions1 = DirectLabel(text="It's Christmas Eve and presents ", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.5))
         self.gameInstructions1.reparentTo(aspect2d)
-        self.gameInstructions2 = DirectLabel(text="have to be delivered to every house!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.2))
+        self.gameInstructions2 = DirectLabel(text="have to be delivered to every house!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.3))
         self.gameInstructions2.reparentTo(aspect2d)
-        self.gameInstructions3 = DirectLabel(text="Avoid obstacles and deliver the presents to the houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0))
+        self.gameInstructions3 = DirectLabel(text="Avoid obstacles and deliver the presents to the houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.1))
         self.gameInstructions3.reparentTo(aspect2d)
-        self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.2))
+        self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.1))
         self.gameInstructions4.reparentTo(aspect2d)
-        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.4))
+        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.3))
         self.gameInstructions5.reparentTo(aspect2d)
-        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.6))
+        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.5))
         self.gameInstructions6.reparentTo(aspect2d)
         self.mySound = loader.loadSfx("music/happy-loop.ogg")
         self.mySound.setLoop(True)
@@ -75,24 +76,11 @@ class MyApp(ShowBase):
         base.enableParticles()
         self.p = ParticleEffect()
         self.p.loadConfig("snow.ptf")
-        self.p.start(parent = render, renderParent = render)
-        #self.p.setLightOff()
-      
+        self.p.start(parent = render, renderParent = render)      
         alight = AmbientLight("alight")
         alight.setColor((0.2, 0.2, 0.4, 1))
         alnp = render.attachNewNode(alight)
         render.setLight(alnp)
-        
-        """
-        dlight = DirectionalLight("dlight")
-        dlight.setColor((1.8, 1.8, 1.5, 1))
-        dlnp = render.attachNewNode(dlight)
-        dlnp.setHpr(0, -90, 0)
-        render.setLight(dlnp)
-        """
-    
-        
-        #render.setShaderAuto()
         self.ss = OnscreenText(text="0",pos=(0,0.8), scale=0.15,fg=(1, 1, 1, 1))
         onebutton = DirectButton(image = "images/flatDark23.png",relief = None, text = (""), scale=.2, command=self.setleft)
         onebutton.setPos(-1,0,-0.7)
@@ -221,10 +209,6 @@ class MyApp(ShowBase):
         DirectButton(image = "images/playagain.png", scale=(0.5,0.5,0.15), relief = None, command=self.initiate, pos=(0, 0, -0.8))
         aspect2d.setTransparency(TransparencyAttrib.MAlpha)
         DirectButton(image = "images/menu.png", scale=(0.5,0.5,0.15), relief = None, command=self.backtomenu, pos=(0, 0, 0.8))
-        #render.getChildren().detach()
-        #render.clearLight()
-        #aspect2d.getChildren().detach()
-        #self.initiate()
     def droppresent(self):
         self.dropp = 1
     def setcandroppresent(self, task):
@@ -238,16 +222,12 @@ class MyApp(ShowBase):
         return Task.done
     def setpresent(self, task):
         self.presentchecker = 1
-       # if (self.presentdropped == 1):
-         #   self.presentdropped = 0
         return Task.done   
     def spawnpresent(self):
         self.present = loader.loadModel("models/present")
         self.present.setScale(5)
         self.present.setPos(self.ship.getPos())
         self.present.setX(self.present.getX()-3)
-        #self.ship.setZ(4)
-       # self.ship.setX(18)
         self.present.reparentTo(render)
     def moveAvatar(self, task):
         dt = globalClock.getDt()
@@ -264,7 +244,6 @@ class MyApp(ShowBase):
         # code to detect stop
         if (self.ship.getY() - self.speedvar == 0):
             self.gameover()
-        #print(self.speedvar)
         curspeedtemp = self.ship.getY() - self.speedvar
         self.curspeed = curspeedtemp * dt
         self.speedvar = self.ship.getY()
