@@ -1,9 +1,6 @@
 from panda3d.core import loadPrcFileData
-
-loadPrcFileData("", "sync-video true")
-loadPrcFileData("", "show-frame-rate-meter false")
-loadPrcFileData("", "window-title Sleigh Ride")
-
+loadPrcFileData('', 'win-size 800 600')
+loadPrcFileData("", "window-title Sleigh Ride!")
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenText import OnscreenText
 from direct.gui.DirectGui import *
@@ -13,12 +10,9 @@ from direct.task import Task
 from direct.particles.Particles import *
 from direct.particles.ParticleEffect import ParticleEffect
 from direct.particles.ForceGroup import ForceGroup
-def addTextField(pos, msg):
-    return OnscreenText(text=msg, style=1, fg=(1,1,1,1),pos=(1, 0.8), align=TextNode.ALeft, scale = .05, mayChange=True)
 class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
-        #self.initiate()
         self.initiatemenu()
     def initiatemenu(self):
         render.getChildren().detach()
@@ -28,20 +22,22 @@ class MyApp(ShowBase):
         self.background = OnscreenImage(image = "images/bg.jpg", pos = (0, 0, 0), scale = (1.5, 1, 1))
         self.background.setTransparency(TransparencyAttrib.MAlpha)
         self.background.reparentTo(self.mainFrame)
-        self.title = OnscreenText(text="Sleigh Ride",pos=(0,0.8), scale=0.2,fg=(1, 1, 1, 1))
-        self.startButton = DirectButton(text = "Play!", scale=.3, command=self.initiate, pos=(0, 0, -0.8))
-        self.creditsButton = DirectButton(text = "Credits", scale=.1, command=self.initiatecredits, pos=(-1, 0, 0.8))
-        self.gameInstructions1 = DirectLabel(text="It is Christmas Eve and presents ", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.5))
+        self.title = OnscreenText(text="Sleigh Ride!",pos=(0,0.8), scale=0.2,fg=(1, 1, 1, 1))
+        self.startButton = DirectButton(image = "images/play.png", scale=(0.5,0.5,0.15), relief = None, command=self.initiate, pos=(0, 0, -0.8))
+        self.startButton.setTransparency(TransparencyAttrib.MAlpha)
+        self.creditsButton = DirectButton(image = "images/credits.png", scale=(0.3,0.3,0.08),relief = None,  command=self.initiatecredits, pos=(-1, 0, 0.6))
+        self.creditsButton.setTransparency(TransparencyAttrib.MAlpha)
+        self.gameInstructions1 = DirectLabel(text="It is Christmas Eve and presents ", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.4))
         self.gameInstructions1.reparentTo(aspect2d)
-        self.gameInstructions2 = DirectLabel(text="have to be delivered to every house!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.4))
+        self.gameInstructions2 = DirectLabel(text="have to be delivered to every house!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.2))
         self.gameInstructions2.reparentTo(aspect2d)
-        self.gameInstructions3 = DirectLabel(text="Avoid obstacles and deliver the presents to the houses!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.2))
+        self.gameInstructions3 = DirectLabel(text="Avoid obstacles and deliver the presents to the houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0))
         self.gameInstructions3.reparentTo(aspect2d)
-        self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0.1))
+        self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.2))
         self.gameInstructions4.reparentTo(aspect2d)
-        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, 0))
+        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.4))
         self.gameInstructions5.reparentTo(aspect2d)
-        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.08, 0.08), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.1))
+        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.6))
         self.gameInstructions6.reparentTo(aspect2d)
         self.mySound = loader.loadSfx("music/happy-loop.ogg")
         self.mySound.setLoop(True)
@@ -53,7 +49,7 @@ class MyApp(ShowBase):
         render.clearLight()
         aspect2d.getChildren().detach()
         self.mainFrame = DirectFrame(frameColor=(0, 0, 0, 1), frameSize=(-2, 2, -2, 2), pos=(0, 0, 0))
-        self.creditsButton = DirectButton(text = "Back", scale=.1, command=self.initiatemenu, pos=(-1, 0, 0.8))
+        self.creditsButton = DirectButton(image = "images/menu.png", scale=(0.3,0.3,0.08),relief = None,  command=self.initiatemenu, pos=(-1, 0, 0.9))
         self.background = OnscreenImage(image = "images/credits.jpg", pos = (0, 0, 0), scale = (2, 1, 1))
         self.background.setTransparency(TransparencyAttrib.MAlpha)
         self.background.reparentTo(self.mainFrame)
@@ -222,8 +218,9 @@ class MyApp(ShowBase):
         aspect2d.getChildren().detach()
         OnscreenText(text="Game Over",pos=(0,0), scale=0.3,fg=(1, 1, 1, 1))
         OnscreenText(text=self.goreason,pos=(0,-0.1), scale=0.1,fg=(1, 1, 1, 1))
-        DirectButton(text = "Retry", scale=.2, command=self.initiate, pos=(0, 0, -0.8))
-        DirectButton(text = "Back to Menu", scale=.2, command=self.backtomenu, pos=(0, 0, 0.8))
+        DirectButton(image = "images/playagain.png", scale=(0.5,0.5,0.15), relief = None, command=self.initiate, pos=(0, 0, -0.8))
+        aspect2d.setTransparency(TransparencyAttrib.MAlpha)
+        DirectButton(image = "images/menu.png", scale=(0.5,0.5,0.15), relief = None, command=self.backtomenu, pos=(0, 0, 0.8))
         #render.getChildren().detach()
         #render.clearLight()
         #aspect2d.getChildren().detach()
