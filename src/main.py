@@ -1,5 +1,6 @@
 from panda3d.core import loadPrcFileData
 loadPrcFileData("", "win-size 800 600")
+loadPrcFileData("", "audio-library-name p3openal_audio")
 loadPrcFileData("", "window-title Sleigh Ride!")
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenText import OnscreenText
