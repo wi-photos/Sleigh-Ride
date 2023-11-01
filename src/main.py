@@ -39,9 +39,9 @@ class MyApp(ShowBase):
         self.gameInstructions3.reparentTo(aspect2d)
         self.gameInstructions4 = DirectLabel(text="Do not skip any houses!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.1))
         self.gameInstructions4.reparentTo(aspect2d)
-        self.gameInstructions5 = DirectLabel(text="Use the spacebar or button to drop presents!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.3))
+        self.gameInstructions5 = DirectLabel(text="Use the spacebar to drop presents!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.3))
         self.gameInstructions5.reparentTo(aspect2d)
-        self.gameInstructions6 = DirectLabel(text="Use arrow keys or buttons to move!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.5))
+        self.gameInstructions6 = DirectLabel(text="Use arrow keys to move!", text_scale=(0.1, 0.1), relief=None, text_fg=(255, 255, 255, 100), pos=(0, 0, -0.5))
         self.gameInstructions6.reparentTo(aspect2d)
         self.mySound = loader.loadSfx("music/happy-loop.ogg")
         self.mySound.setLoop(True)
@@ -94,6 +94,10 @@ class MyApp(ShowBase):
         onebutton2 = DirectButton(image = "images/flatDark10.png",relief = None, text = (""), scale=.2, command=self.droppresent)
         onebutton2.setPos(0,0,-0.7)
         onebutton2.setTransparency(TransparencyAttrib.MAlpha)
+        # hide buttons for desktop version
+        onebutton.hide()
+        onebutton1.hide()
+        onebutton2.hide()
         self.moveKeyList = [
             "arrow_left", "arrow_right", "arrow_up", "arrow_down","space","w","s","a","d","q","e"]
         self.moveKeys = {}
